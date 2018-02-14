@@ -11,7 +11,7 @@ const logger = require('novice/logger');
 // build doc
 noviceApp.buildDoc(
   // name
-  "Outer Haven API",
+  "Novice Express",
   // host
   "host.com",
   // base url
