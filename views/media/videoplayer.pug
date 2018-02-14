@@ -1,0 +1,57 @@
+doctype html
+html(lang="en")
+head
+  meta(charset="UTF-8")
+  meta(name="Author" content="")
+  meta(name="Keywords" content="")
+  meta(name="Description" content="")
+  link(href="https://fonts.googleapis.com/css?family=Oswald:300" rel="stylesheet" type="text/css")
+  link(href="/assets/videoplayer/css/embednwvp.css" rel="stylesheet" type="text/css")
+  script(src="https://code.jquery.com/jquery-3.1.0.min.js")
+  script(src="/assets/videoplayer/js/embednwvp.js" type="text/javascript")
+  title Novice Web Video Player
+body
+  .caption
+    a(
+      id="novice-logo",
+      href="https://www.youtube.com/watch?v=OXewKWKvva8",
+      target="_blank"
+      )
+      img(
+        src="https://www.designfreelogoonline.com/wp-content/uploads/2016/03/00167-Abstract-spiral-globe-logo-design-free-online-logomaker-01.png",
+        alt="Novice",
+        width="20"
+        )
+    span.title Novice Web Video Player
+
+  .videoContainer
+    //- poster (p)
+    video(
+      id="myVideo",
+      controls,
+      preload="auto",
+      width="854",
+      poster=p
+      )
+      //- source (v)
+      source(src=v)
+      p Your browser does not support the video tag.
+    button.btnVideoFocus
+    
+  .control
+    .btmControl
+      .btnPlay.btn(title="Play/Pause video")
+        span.icon-play
+      .progress-bar
+        .progress
+          span.bufferBar
+          span.timeBar
+      .current.hiddenSmall
+      .sound.sound2.btn(title="Mute/Unmute sound")
+        span.icon-sound
+      .volume-bar.hiddenSmall(title="Set volume")
+        .volume
+          span.bufferBar
+          span.volumeBar
+      .btnFS.btn(title="Switch to full screen")
+        span.icon-fullscreen

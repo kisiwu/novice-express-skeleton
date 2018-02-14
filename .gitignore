@@ -1,0 +1,22 @@
+
+# binaries
+bin
+
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# DB schema folder
+models/dogma/mongoose/schema
+
+# private folder
+private
+
+# upload folder
+uploads
+
+# backups
+*.bak
+
