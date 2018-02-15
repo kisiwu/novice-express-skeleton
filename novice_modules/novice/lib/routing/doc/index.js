@@ -1,7 +1,7 @@
 var formats = {};
 
 const DEFAULT_FORMATS = {
-  log: require('./formats/log'),
+  console: require('./formats/console'),
   swagger: require('./formats/swagger')
 };
 
@@ -29,7 +29,7 @@ function DocBuilder(app, config){
 DocBuilder.prototype.build = function build(name, host, basePath, schemes, info){
 
   Object.keys(formats).forEach( p => {
-    if(p == 'log' && this.built){
+    if(p == 'console' && this.built){
       return;
     }
 

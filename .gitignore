@@ -6,7 +6,7 @@ bin
 node_modules
 
 # logs
-npm-debug.log
+*.log
 
 # DB schema folder
 models/dogma/mongoose/schema
@@ -19,4 +19,3 @@ uploads
 
 # backups
 *.bak
-

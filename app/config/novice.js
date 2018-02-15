@@ -53,7 +53,7 @@ var novice = {
 			 */
 			engine: "pug"
 		},
-	
+
 	/**
 	* add default locals in response app.custom (e.g.: res.app.custom.myVarialble)
 	*/
@@ -66,7 +66,7 @@ var novice = {
        * documentation formats to build
        */
       // true or false
-      log: false,
+      console: true,
 
       // true or path or false
       swagger: "/doc/swagger"

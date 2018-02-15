@@ -15,9 +15,7 @@ Log.prototype.add = function add(route){
 
   var routeStacks = route.stacks.join(", ");
 
-  //Logger.log(route.parameters);
-
-  Logger.log( `\n
+  console.log( `\n
 \t${routeStacks}
 \t╔═══════${route.method.length >= 4 ? "═".repeat(route.method.length - 3) : ""}═╤═════${route.path.length >= 6 ? "═".repeat(route.path.length - 4) : ""}═╤═══════${route.name && route.name.length > 7  ? "═".repeat(route.name.length-7) : ""}══╗
 \t║ Method${route.method.length >= 4 ? " ".repeat(route.method.length - 3) : ""} │ Path${route.path.length >= 6 ? " ".repeat(route.path.length - 4) : ""} │ Name  ${route.name && route.name.length > 7  ? " ".repeat(route.name.length-7) : ""}  ║
