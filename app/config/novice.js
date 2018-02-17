@@ -1,11 +1,4 @@
-/** PROTOTYPES FOR JAVASCRIPT CLASSES */
-var path = require('path');
-
-String.prototype.isEmpty = function() {
-    return (this.length === 0 || !this.trim());
-};
-
-/** /PROTOTYPES FOR JAVASCRIPT CLASSES */
+var authMiddlewares = require('./authMiddlewares');
 
 var novice = {
 	novice: {
@@ -35,9 +28,7 @@ var novice = {
 			/**
 			 * Handler after the token has been decoded and put in req.auth
 			 */
-			afterHandler: function(req, res, next){
-				next();
-			},
+			afterHandler: authMiddlewares[0],
 
 			/**
 		 	 * The jwt configuration (npm: express-jwt)

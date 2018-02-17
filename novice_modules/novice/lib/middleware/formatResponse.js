@@ -6,6 +6,10 @@ module.exports = function(novice, res){
     if(!code){
       code = 200
     }
+    else if(code instanceof Error){
+      response = code;
+      code = 500;
+    }
 
     if(typeof response === 'string'){
       response = {message: response}

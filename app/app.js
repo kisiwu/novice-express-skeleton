@@ -4,6 +4,15 @@
 var novice = require('./novice-bootstrap.js')(__dirname);
 // ***
 
+/** PROTOTYPES FOR JAVASCRIPT CLASSES */
+
+String.prototype.isEmpty = function() {
+    return (this.length === 0 || !this.trim());
+};
+
+/** /PROTOTYPES FOR JAVASCRIPT CLASSES */
+
+
 const logger = require('novice').logger;
 
 
