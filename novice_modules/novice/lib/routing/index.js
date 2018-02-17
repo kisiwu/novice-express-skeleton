@@ -121,7 +121,11 @@ Routing.prototype.route = function route(params, handlers){
           }
 
           if(this.options.authConfig.afterHandler){
-              args.unshift(this.options.authConfig.afterHandler);
+            var afterAuthHandlers = this.options.authConfig.afterHandler;
+            if(!Array.isArray(afterAuthHandlers)){
+              afterAuthHandlers = [afterAuthHandlers];
+            }
+            args.unshift.apply(args, afterAuthHandlers);
           }
 
           args.unshift(function (req, res, next) {

@@ -28,7 +28,7 @@ var novice = {
 			/**
 			 * Handler after the token has been decoded and put in req.auth
 			 */
-			afterHandler: authMiddlewares[0],
+			afterHandler: authMiddlewares,
 
 			/**
 		 	 * The jwt configuration (npm: express-jwt)
