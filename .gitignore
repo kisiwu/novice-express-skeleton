@@ -19,3 +19,6 @@ uploads
 
 # backups
 *.bak
+
+# tests
+utils/routeRegisterProxy.js

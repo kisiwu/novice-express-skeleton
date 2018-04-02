@@ -233,7 +233,7 @@ app.ConfigureExpressRouting = function ConfigureExpressRouting(app)
 
     NoviceRouting = new NoviceRoutingClass({authConfig: authConfig, secret: params.secret});
 
-    DocBuilder = new RoutesDocBuilderClass(app, documentationFormat);
+    DocBuilder = new RoutesDocBuilderClass(this, app, documentationFormat);
 
     var instance = this;
 

@@ -8,6 +8,8 @@ const expressApp = noviceApp.getApp();
 
 const logger = require('novice/logger');
 
+var amqp = require('amqplib/callback_api')
+
 // build doc
 noviceApp.buildDoc(
   // name
@@ -37,9 +39,10 @@ noviceApp.buildDoc(
 const server = http.createServer(expressApp);
 
 var port = process.env.PORT || 8000,
-    ip   = process.env.IP   || '0.0.0.0';
+    processIP   = process.env.IP   || '0.0.0.0';
 
-server.listen(port, ip, function () {
+server.listen(port, processIP, function () {
   logger.info(`Application worker ${process.pid} started...`);
-  logger.info(`Server running on http://${ip}:${port}`);
+  logger.info(`Server running on http://${processIP}:${port}`);
+
 });

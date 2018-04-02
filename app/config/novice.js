@@ -57,10 +57,14 @@ var novice = {
        * documentation formats to build
        */
       // true or false
-      console: true,
+      //console: true,
 
       // true or path or false
-      swagger: "/doc/swagger"
+	  swagger: "/doc/swagger",
+	  
+	  /*rabbitMQProxy: {
+		classPath: "utils/routeRegisterProxy.js"
+	  }*/
     },
 	/* favicon in public folder */
 	favicon: "favicon.ico"
