@@ -63,7 +63,10 @@ var novice = {
 	  swagger: "/doc/swagger",
 	  
 	  /*rabbitMQProxy: {
-		classPath: "utils/routeRegisterProxy.js"
+		classPath: "utils/routeRegisterProxy.js",
+		args: {
+			arg1: 'abc'
+		}
 	  }*/
     },
 	/* favicon in public folder */

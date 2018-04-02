@@ -8,8 +8,6 @@ const expressApp = noviceApp.getApp();
 
 const logger = require('novice/logger');
 
-var amqp = require('amqplib/callback_api')
-
 // build doc
 noviceApp.buildDoc(
   // name
