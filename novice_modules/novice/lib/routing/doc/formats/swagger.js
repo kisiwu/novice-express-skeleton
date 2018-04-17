@@ -14,6 +14,13 @@ var swaggerv2 = {
   ],
   "consumes": [],
   "produces": [],
+  "securityDefinitions": {
+    "NoviceAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
   "paths": {},
   /*"definitions": {
     "Pet": {
@@ -83,6 +90,12 @@ Swagger.prototype.add = function add(route){
     "tags": route.stacks,
     "parameters": formatParameters(route.parameters),
     "responses": formatResponses(route.responses)
+  }
+
+  if(route.auth){
+    swaggerv2.paths[path][route.method].security = [{
+      "NoviceAuth": []
+    }];
   }
 }
 

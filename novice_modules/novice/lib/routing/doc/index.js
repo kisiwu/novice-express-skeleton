@@ -76,6 +76,7 @@ DocBuilder.prototype.add = function add(routeCollection, routes){
     var routeStacks = [];
     var routeParameters = {};
     var routeResponses = {};
+    var routeSecurity;
 
     if(stack.route.meta){
       stackName = stack.route.meta.name || "";
@@ -85,6 +86,7 @@ DocBuilder.prototype.add = function add(routeCollection, routes){
       }
       routeParameters = stack.route.meta.parameters || routeParameters;
       routeResponses = stack.route.meta.responses || routeResponses;
+      routeSecurity = stack.route.meta.auth;
     }
     if(stackPath.indexOf("//") == 0)
       stackPath = stackPath.replace("//","/");
@@ -96,6 +98,7 @@ DocBuilder.prototype.add = function add(routeCollection, routes){
 
         Object.keys(formats).forEach( p => {
           formats[p].add({
+            auth: routeSecurity,
             stacks: routeStacks,
             name: stackName,
             description: stackDescription,
