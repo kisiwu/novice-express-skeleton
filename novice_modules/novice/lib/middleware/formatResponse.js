@@ -59,8 +59,13 @@ module.exports = function(novice, res){
     return res.status(code).json(response);
   }
 
+  // set functions
   res.reply = reply;
 
+  // set headers
+  res.set('X-Powered-By', 'Novice-Express');
+
+  // set locals
   res.locals.app = {
     user: null,
     name: pkg.name,

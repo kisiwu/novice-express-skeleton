@@ -1,3 +1,5 @@
+import { getType } from "mime";
+
 var swaggerv2 = {
   "swagger": "2.0",
   "info": {
@@ -247,7 +249,7 @@ function pushPathParameters(place, ps, parameters){
 
 function schemaJoiPropertyValidation(name, configParameter, schema){
   var param = {
-    "type": configParameter._type
+    "type": getType(configParameter._type)
   };
 
   if(configParameter._description){
@@ -280,7 +282,7 @@ function schemaJoiPropertyValidation(name, configParameter, schema){
     }
     else{
       param["items"] = {
-        type: "any"
+        type: getType("any")
       }
     }
 
@@ -414,4 +416,8 @@ function formatResponses(routeResponses){
   }
 
   return responses;
+}
+
+function getType(type){
+  return type == "any" ? "object" : type;
 }
