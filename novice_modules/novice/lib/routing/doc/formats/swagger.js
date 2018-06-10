@@ -1,4 +1,4 @@
-import { getType } from "mime";
+const logger = require('novice/logger');
 
 var swaggerv2 = {
   "swagger": "2.0",
@@ -70,13 +70,16 @@ var swaggerv2 = {
 
 exports = module.exports = Swagger;
 
-function Swagger(app, pathToDoc){
+function Swagger(router, pathToDoc){
 
   pathToDoc = pathToDoc && typeof pathToDoc === "string" ? pathToDoc : "/doc/swagger";
 
-  app.get(pathToDoc, function (req, res){
-    return res.status(200).json(swaggerv2);
-  });
+  this.addRoute = function(){
+    router.get(pathToDoc, function (req, res){
+      return res.status(200).json(swaggerv2);
+    });
+    logger.info(`Documentation: Swagger @ ${pathToDoc}`);
+  };
 }
 
 Swagger.prototype.add = function add(route){
@@ -114,6 +117,17 @@ Swagger.prototype.format = function format(name, host, basePath, schemes, info){
 
   swaggerv2.consumes = Array.isArray(info.consumes) ? info.consumes : swaggerv2.consumes;
   swaggerv2.produces = Array.isArray(info.produces) ? info.produces : swaggerv2.produces;
+
+  // others
+  Object.keys(info).forEach(
+    p => {
+      if(["title","host","basePath","schemes","version","license","consumes","produces","securityDefinitions","path"].indexOf(p) == -1){
+        swaggerv2[p] = info[p];
+      }
+    }
+  );
+  
+  this.addRoute();
 }
 
 function formatPath(path, params){
@@ -333,6 +347,17 @@ function schemaJoiPropertyValidation(name, configParameter, schema){
     param.description += (param.description ? " " : "") + "("+configParameter._unit+")";
   }
 
+  // object keys
+  if(param.type == "object"){
+    // check if it has defined keys
+    if(configParameter._inner && Array.isArray(configParameter._inner.children) && configParameter._inner.children.length){
+      param.properties = {};
+      configParameter._inner.children.forEach(c => {
+        schemaJoiPropertyValidation(c.key, c.schema, param);
+      });
+    }
+  }
+
   if(schema.type == "object"){
     schema["properties"][name] = param;
   }
@@ -374,6 +399,23 @@ function formatJoiPropertyValidation(place, configParameter){
   // enum
   if(configParameter._flags.allowOnly && configParameter._valids._set.length){
     param.enum = configParameter._valids._set;
+  }
+
+  // array items
+  if(param.type == "array"){
+
+    // schema item
+    if(configParameter._inner && configParameter._inner.items && configParameter._inner.items[0]){
+      param["items"] = {
+        type: getType(configParameter._inner.items[0]._type)
+      }
+    }
+    else{
+      param["items"] = {
+        type: getType("any")
+      }
+    }
+
   }
 
   // tests

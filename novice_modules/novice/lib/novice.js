@@ -6,6 +6,7 @@ var NoviceParameterBag = require('./config/parameter-bag');
 var noviceRouteCollectionClass = require('./config/route-collection');
 var NoviceRoutingClass = require('./routing');
 var RoutesDocBuilderClass = require('./routing/doc');
+var customRouter = require('./routing/router')();
 var DocBuilder;
 var GetNoviceMiddlewares = require('./middleware');
 
@@ -231,9 +232,12 @@ app.ConfigureExpressRouting = function ConfigureExpressRouting(app)
         throw new TypeError("Novice::ConfigureExpressRouting - Argument 1 must be Express app");
     }
 
+    // a custom router for eventual routes to register later
+    app.use('/', customRouter);
+
     NoviceRouting = new NoviceRoutingClass({authConfig: authConfig, secret: params.secret});
 
-    DocBuilder = new RoutesDocBuilderClass(this, app, documentationFormat);
+    DocBuilder = new RoutesDocBuilderClass(this, customRouter, documentationFormat);
 
     var instance = this;
 

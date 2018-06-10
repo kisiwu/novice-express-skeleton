@@ -9,10 +9,10 @@ exports = module.exports = DocBuilder;
 
 /**
 * @param {Object} novice Novice app
-* @param {Object} app ExpressJS app
+* @param {Object} router ExpressJS router
 * @param {Object} config name of formats to use
 */
-function DocBuilder(novice, app, config){
+function DocBuilder(novice, router, config){
 
   this.built = false;
 
@@ -21,14 +21,14 @@ function DocBuilder(novice, app, config){
   Object.keys(config).map(
     format => {
       if(DEFAULT_FORMATS[format] && config[format] && !formats[format]){
-        formats[format] = new DEFAULT_FORMATS[format](app, config[format], format);
+        formats[format] = new DEFAULT_FORMATS[format](router, config[format], format);
       }
       else if(typeof config[format].classPath === "string"){
         console.log(novice);
         
         var ClassFile = novice.require(config[format].classPath);
         var args = [
-          app,
+          router,
           config[format].args,
           format
         ];
